@@ -1,0 +1,12 @@
+{
+  "contextTokens": 1000000,
+  "maxOutputTokens": 131072,
+  "mcpServers": [
+    {
+      "id": "exa",
+      "name": "Exa Search",
+      "url": "https://mcp.exa.ai/mcp",
+      "token": ""
+    }
+  ]
+}
