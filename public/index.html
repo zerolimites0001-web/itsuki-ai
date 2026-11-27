@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css">
-  <link rel="stylesheet" href="/styles.css?v=20261127-6">
+  <link rel="stylesheet" href="/styles.css?v=20261127-7">
 </head>
 <body data-theme="dark">
   <div class="app-shell">
@@ -46,13 +46,13 @@
           <div class="welcome-eyebrow">SUA ASSISTENTE DE IA</div>
           <h1>O que você quer <span>aprender?</span></h1>
           <p>Oi! Eu sou a Itsuki. Pode perguntar qualquer coisa —<br class="desktop-only"> vamos descobrir juntos. ✦</p>
-          <div class="suggestions"><button class="suggestion" data-prompt="Me explique um conceito difícil de um jeito simples."><span>✦</span> Explique algo difícil</button><button class="suggestion" data-prompt="Me ajude a escrever um código limpo e bem organizado."><span>⌘</span> Ajuda com código</button><button class="suggestion" data-prompt="Me ensine matemática passo a passo, com fórmulas formatadas."><span>∑</span> Matemática</button></div>
+          <div class="suggestions"><button class="suggestion" data-prompt="Me explique um conceito difícil de um jeito simples."><span>✦</span> Explique algo difícil</button><button class="suggestion" data-prompt="Me ajude a escrever um código limpo e bem organizado."><span>⌘</span> Ajuda com código</button><button class="suggestion" data-prompt="Me ensine matemática passo a passo, com fórmulas formatadas."><span>∑</span> Matemática</button><button class="suggestion" data-prompt="Crie uma prova interativa completa sobre um tema que eu escolher. Primeiro pergunte a matéria, o nível e a quantidade de questões."><span>▤</span> Criar prova</button><button class="suggestion" data-prompt="Ative seu modo professora: me ensine um assunto com explicações, exemplos e perguntas para verificar se entendi."><span>✎</span> Modo professora</button></div>
         </div>
         <section class="conversation" id="conversation" aria-live="polite"></section>
         <div class="composer-area">
           <div class="composer" id="composer">
-            <textarea id="promptInput" rows="1" placeholder="Pergunte qualquer coisa" aria-label="Mensagem"></textarea>
-            <div class="composer-bottom"><div class="composer-tools"><button class="tool-btn" id="attachBtn" title="Anexar imagem (em breve)"><span>＋</span></button><span class="thinking-control"><span class="thinking-label">Thinking</span><button class="toggle" id="thinkingToggle" role="switch" aria-checked="true" aria-label="Thinking ligado"><span></span></button><span class="toggle-state" id="thinkingState">ON</span></span></div><button class="send-btn" id="sendBtn" aria-label="Enviar mensagem"><svg viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div>
+            <div class="attachment-tray" id="attachmentTray" hidden></div><textarea id="promptInput" rows="1" placeholder="Pergunte qualquer coisa" aria-label="Mensagem"></textarea><input id="fileInput" type="file" hidden multiple accept="image/png,image/jpeg,image/webp,.pdf,.txt,.md,.csv,.json,.js,.ts,.html,.css,.xml,.log,.docx">
+            <div class="composer-bottom"><div class="composer-tools"><button class="tool-btn" id="attachBtn" title="Anexar imagens, PDFs e arquivos"><span>＋</span></button><span class="thinking-control"><span class="thinking-label">Thinking</span><button class="toggle" id="thinkingToggle" role="switch" aria-checked="true" aria-label="Thinking ligado"><span></span></button><span class="toggle-state" id="thinkingState">ON</span></span></div><button class="send-btn" id="sendBtn" aria-label="Enviar mensagem"><svg viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div>
           </div>
           <div class="disclaimer">A Itsuki pode cometer erros. Confira informações importantes.</div>
         </div>
@@ -67,10 +67,12 @@
     <div class="settings-footer"><span class="key-status" id="keyStatus">Nenhuma chave informada</span><button class="primary-btn" id="saveSettings">Pronto</button></div>
   </section></div>
   <div class="html-preview-backdrop" id="htmlPreviewBackdrop" aria-hidden="true"><section class="html-preview-panel" role="dialog" aria-modal="true" aria-label="Pré-visualização HTML"><header><strong>Pré-visualização HTML</strong><button type="button" class="icon-btn" id="closeHtmlPreview" aria-label="Fechar pré-visualização">×</button></header><iframe id="htmlPreviewFrame" title="Pré-visualização do HTML" sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals allow-presentation" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; screen-wake-lock; web-share" referrerpolicy="no-referrer"></iframe></section></div><div class="modal-backdrop" id="memoryBackdrop"><section class="settings-modal memory-modal" role="dialog" aria-modal="true" aria-labelledby="memoryTitleHeading"><div class="modal-head"><div><span class="modal-kicker">LEMBRANÇAS DA ITSUKI</span><h2 id="memoryTitleHeading">Memória</h2></div><button class="icon-btn" id="closeMemory" aria-label="Fechar">×</button></div><div class="settings-section"><label for="memorySearch">Buscar por palavra-chave</label><input class="memory-input" id="memorySearch" placeholder="Ex.: projeto, preferência, nome..."></div><div class="memory-list" id="memoryList"></div><div class="memory-editor" id="memoryForm"><div class="settings-section"><label for="memoryTitle">Título</label><input class="memory-input" id="memoryTitle" maxlength="80" placeholder="Ex.: Preferência de idioma"></div><div class="settings-section"><label for="memoryContent">O que a Itsuki deve lembrar?</label><textarea class="memory-textarea" id="memoryContent" rows="3" placeholder="Escreva uma lembrança útil para conversas futuras..."></textarea></div><div class="memory-footer"><button class="secondary-btn" id="memoryClear">Limpar</button><button class="primary-btn" id="memorySave">Salvar memória</button></div></div></section></div>
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/lib/common.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="/app.js?v=20261127-6"></script>
+  <script src="/app.js?v=20261127-8"></script>
 </body></html>
