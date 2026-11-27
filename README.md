@@ -1,37 +1,29 @@
-# Itsuki AI
+# 🚀 Itsuki AI
 
-Assistente web local com NVIDIA NIM, streaming de Thinking, histórico e ferramentas MCP remotas.
+![Itsuki AI](https://img.shields.io/badge/Itsuki-AI-orange?style=for-the-badge)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)
+![Status](https://img.shields.io/badge/Status-Development-yellow?style=for-the-badge)
 
-## Requisitos
-- Node.js 20+ (sem dependências npm; usa apenas módulos nativos e `fetch` global)
-- Chave NVIDIA NIM para conversar com o modelo
+> An AI-powered conversational assistant built with NVIDIA models and multi-server MCP integration.
 
-## Iniciar
-1. Copie `.env.example` para `.env` se quiser alterar modelo, endpoint ou porta.
-2. Execute `node server.js`.
-3. Abra `http://localhost:3000`.
-4. Informe a NVIDIA API Key nas configurações.
+---
 
-## Servidores MCP
-- Abra Configurações > Servidores MCP (seção recolhível).
-- Adicione quantos servidores Streamable HTTP desejar (até 12), cada um com nome, URL HTTPS e token opcional.
-- O botão Salvar conecta todos em paralelo, negocia `initialize`, envia `notifications/initialized`, pagina `tools/list` e expõe os schemas reais ao modelo.
-- As ferramentas são namespaced por servidor para evitar colisões entre nomes iguais. As chamadas são roteadas de volta ao servidor correto por `tools/call`.
-- O token é enviado como `x-api-key` e `Authorization: Bearer`; não é devolvido pela API de configuração. Deixe em branco para manter o token já salvo daquele servidor.
-- Exa Search vem pré-configurado em `https://mcp.exa.ai/mcp`, sem parâmetros que forcem autenticação. A busca e leitura básicas são anônimas, sujeitas a limites gratuitos. Ferramentas Exa Agent exigem autenticação.
-- Um servidor com falha não impede que os outros conectem. O status e as ferramentas descobertas aparecem por servidor.
+## ✨ Features
 
-## Dados locais
-- `history-chats/`: conversas
-- `memory/`: memórias
-- `runtime-config.json`: configurações e tokens dos MCPs. Não compartilhe este arquivo com credenciais preenchidas.
-- `.env`: configurações locais; não coloque credenciais em arquivos distribuídos.
+- 🤖 NVIDIA-powered AI
+- 🔌 Multi-server MCP integration
+- 🧠 Reasoning and tool execution
+- 🔍 Web search integration
+- 💬 Interactive chat interface
 
-## Limitações de transporte
-A implementação suporta MCP remoto por Streamable HTTP. Servidores MCP locais via stdio e OAuth interativo de navegador não são suportados; use um token/API key compatível quando o servidor exigir autenticação.
+## 🛠️ Tech Stack
 
-## Chave NVIDIA
-- A chave é salva pelo servidor em `private-config.json`, com permissão restrita ao usuário do processo (modo 600 em sistemas compatíveis).
-- O conteúdo da chave nunca é retornado ao navegador pela API de configuração e não fica no `localStorage`.
-- Se o campo de chave ficar vazio ao salvar, a chave anteriormente gravada é mantida. Para substituir, informe a nova chave e salve.
-- `private-config.json` é ignorado pelo Git e não é incluído no ZIP distribuído.
+- JavaScript
+- Node.js
+- NVIDIA NIM
+- Model Context Protocol (MCP)
+
+## 📄 License
+
+This project is licensed under the MIT License.
